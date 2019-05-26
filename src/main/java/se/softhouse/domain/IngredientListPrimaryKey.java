@@ -15,4 +15,30 @@ public class IngredientListPrimaryKey implements Serializable
     private int recipeId;
     @Column(name = "ingredient_id")
     private int ingredientId;
+
+    public IngredientListPrimaryKey()
+    {
+
+    }
+
+    public int getRecipeId()
+    {
+        return recipeId;
+    }
+
+    public void setRecipeId(int recipeId)
+    {
+        this.recipeId = recipeId;
+    }
+
+    public int getIngredientId()
+    {
+        return ingredientId;
+    }
+
+    public void setIngredientId(int ingredientId)
+    {
+        this.ingredientId = ingredientId;
+    }
+
 }

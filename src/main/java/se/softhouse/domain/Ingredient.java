@@ -29,11 +29,45 @@ public class Ingredient implements Serializable
     @OneToMany(mappedBy = "recipe")
     private Set<IngredientRecipe> employerDeliveryAgent = new HashSet<IngredientRecipe>();
 
+    public Ingredient()
+    {
+    }
+
     public Ingredient(int id, String name)
     {
         super();
         this.id = id;
         this.name = name;
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public Set<IngredientRecipe> getEmployerDeliveryAgent()
+    {
+        return employerDeliveryAgent;
+    }
+
+    public void setEmployerDeliveryAgent(Set<IngredientRecipe> employerDeliveryAgent)
+    {
+        this.employerDeliveryAgent = employerDeliveryAgent;
     }
 
 }

@@ -32,12 +32,63 @@ public class Recipe implements Serializable
     @OneToMany(mappedBy = "ingredient")
     private Set<IngredientRecipe> employerDeliveryAgent = new HashSet<IngredientRecipe>();
 
+    public Recipe()
+    {
+    }
+
     public Recipe(Integer id, String name, Integer people)
     {
         super();
         this.id = id;
         this.name = name;
         this.people = people;
+    }
+
+    public Integer getId()
+    {
+        return id;
+    }
+
+    public void setId(Integer id)
+    {
+        this.id = id;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public Integer getPeople()
+    {
+        return people;
+    }
+
+    public void setPeople(Integer people)
+    {
+        this.people = people;
+    }
+
+    public Set<IngredientRecipe> getEmployerDeliveryAgent()
+    {
+        return employerDeliveryAgent;
+    }
+
+    public void setEmployerDeliveryAgent(Set<IngredientRecipe> employerDeliveryAgent)
+    {
+        this.employerDeliveryAgent = employerDeliveryAgent;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Recipe [id=" + id + ", name=" + name + ", people=" + people + ", employerDeliveryAgent="
+                + employerDeliveryAgent + "]";
     }
 
 }

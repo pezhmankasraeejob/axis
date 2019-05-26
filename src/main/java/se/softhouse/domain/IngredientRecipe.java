@@ -31,4 +31,29 @@ public class IngredientRecipe implements Serializable
 
     @Column(name = "amount")
     private int amount;
+
+    public IngredientRecipe()
+    {
+    }
+
+    public IngredientListPrimaryKey getIngredientListPrimaryKey()
+    {
+        return ingredientListPrimaryKey;
+    }
+
+    public void setIngredientListPrimaryKey(IngredientListPrimaryKey ingredientListPrimaryKey)
+    {
+        this.ingredientListPrimaryKey = ingredientListPrimaryKey;
+    }
+
+    public int getAmount()
+    {
+        return amount;
+    }
+
+    public void setAmount(int amount)
+    {
+        this.amount = amount;
+    }
+
 }

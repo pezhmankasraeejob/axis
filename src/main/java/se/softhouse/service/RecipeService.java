@@ -2,6 +2,7 @@ package se.softhouse.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,18 @@ public class RecipeService
 
         return savedRecipe;
 
+    }
+
+    public Recipe update(Integer recipeId, Recipe recipe)
+    {
+        Optional<Recipe> recipeTemp = recipeRepository.findById(recipeId);
+
+        Recipe updatedRecipe = null;
+        if(recipeTemp.isPresent())
+        {
+            updatedRecipe = recipeRepository
+                    .save(new Recipe(recipeId, recipe.getName(), recipe.getPeople(), recipe.getIngredientRecipes()));
+        }
+        return updatedRecipe;
     }
 }

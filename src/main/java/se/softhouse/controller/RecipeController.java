@@ -53,4 +53,15 @@ public class RecipeController
                 .buildAndExpand(addedRecipe.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
+
+    @RequestMapping(value = "/recipe/{recipe_id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    @Transactional
+    public ResponseEntity<Object> updateRecipe(@PathVariable("recipe_id") Integer recipeId, @RequestBody Recipe recipe)
+    {
+        Recipe updatedRecipe = recipeService.update(recipeId, recipe);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(updatedRecipe.getId()).toUri();
+        return ResponseEntity.created(location).build();
+    }
 }

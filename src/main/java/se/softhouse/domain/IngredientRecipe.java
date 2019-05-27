@@ -20,17 +20,17 @@ public class IngredientRecipe implements Serializable
     private IngredientListPrimaryKey ingredientListPrimaryKey;
 
     @ManyToOne
-    @MapsId("recipeId")
+    @MapsId("id")
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
     @ManyToOne
-    @MapsId("ingredientId")
+    @MapsId("id")
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
     @Column(name = "amount")
-    private int amount;
+    private Integer amount;
 
     public IngredientRecipe()
     {
@@ -46,14 +46,21 @@ public class IngredientRecipe implements Serializable
         this.ingredientListPrimaryKey = ingredientListPrimaryKey;
     }
 
-    public int getAmount()
+    public Integer getAmount()
     {
         return amount;
     }
 
-    public void setAmount(int amount)
+    public void setAmount(Integer amount)
     {
         this.amount = amount;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "IngredientRecipe [ingredientListPrimaryKey=" + ingredientListPrimaryKey + ", recipe=" + recipe
+                + ", ingredient=" + ingredient + ", amount=" + amount + "]";
     }
 
 }

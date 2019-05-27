@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -21,31 +23,31 @@ public class Ingredient implements Serializable
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(nullable = false, name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<IngredientRecipe> ingredientRecipes = new HashSet<IngredientRecipe>();
 
     public Ingredient()
     {
     }
 
-    public Ingredient(int id, String name)
+    public Ingredient(Integer id, String name)
     {
         super();
         this.id = id;
         this.name = name;
     }
 
-    public int getId()
+    public Integer getId()
     {
         return id;
     }
 
-    public void setId(int id)
+    public void setId(Integer id)
     {
         this.id = id;
     }
@@ -67,7 +69,7 @@ public class Ingredient implements Serializable
 
     public void setIngredientRecipes(Set<IngredientRecipe> ingredientRecipes)
     {
-        this.ingredientRecipes = ingredientRecipes;
+        this.ingredientRecipes.addAll(ingredientRecipes);
     }
 
 }

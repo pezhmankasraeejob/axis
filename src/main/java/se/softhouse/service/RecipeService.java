@@ -27,4 +27,13 @@ public class RecipeService
         Recipe recipe = recipeRepository.findAll().stream().filter(t -> t.getId().equals(recipeId)).findFirst().get();
         return recipe;
     }
+
+    public Recipe add(Recipe recipe)
+    {
+        Recipe savedRecipe = recipeRepository
+                .save(new Recipe(recipe.getId(), recipe.getName(), recipe.getPeople(), recipe.getIngredientRecipes()));
+
+        return savedRecipe;
+
+    }
 }

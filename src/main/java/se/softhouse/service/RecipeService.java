@@ -35,7 +35,6 @@ public class RecipeService
                 .save(new Recipe(recipe.getId(), recipe.getName(), recipe.getPeople(), recipe.getIngredientRecipes()));
 
         return savedRecipe;
-
     }
 
     public Recipe update(Integer recipeId, Recipe recipe)

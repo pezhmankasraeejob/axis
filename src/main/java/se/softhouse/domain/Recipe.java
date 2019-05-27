@@ -30,7 +30,7 @@ public class Recipe implements Serializable
     private Integer people;
 
     @OneToMany(mappedBy = "ingredient")
-    private Set<IngredientRecipe> employerDeliveryAgent = new HashSet<IngredientRecipe>();
+    private Set<IngredientRecipe> ingredientRecipes = new HashSet<IngredientRecipe>();
 
     public Recipe()
     {
@@ -74,21 +74,21 @@ public class Recipe implements Serializable
         this.people = people;
     }
 
-    public Set<IngredientRecipe> getEmployerDeliveryAgent()
+    public Set<IngredientRecipe> getIngredientRecipes()
     {
-        return employerDeliveryAgent;
+        return ingredientRecipes;
     }
 
-    public void setEmployerDeliveryAgent(Set<IngredientRecipe> employerDeliveryAgent)
+    public void setIngredientRecipes(Set<IngredientRecipe> ingredientRecipes)
     {
-        this.employerDeliveryAgent = employerDeliveryAgent;
+        this.ingredientRecipes = ingredientRecipes;
     }
 
     @Override
     public String toString()
     {
-        return "Recipe [id=" + id + ", name=" + name + ", people=" + people + ", employerDeliveryAgent="
-                + employerDeliveryAgent + "]";
+        return "Recipe [id=" + id + ", name=" + name + ", people=" + people + ", ingredientRecipes="
+                + ingredientRecipes + "]";
     }
 
 }

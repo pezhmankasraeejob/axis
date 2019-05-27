@@ -27,7 +27,7 @@ public class Ingredient implements Serializable
     private String name;
 
     @OneToMany(mappedBy = "recipe")
-    private Set<IngredientRecipe> employerDeliveryAgent = new HashSet<IngredientRecipe>();
+    private Set<IngredientRecipe> ingredientRecipes = new HashSet<IngredientRecipe>();
 
     public Ingredient()
     {
@@ -60,14 +60,14 @@ public class Ingredient implements Serializable
         this.name = name;
     }
 
-    public Set<IngredientRecipe> getEmployerDeliveryAgent()
+    public Set<IngredientRecipe> getIngredientRecipes()
     {
-        return employerDeliveryAgent;
+        return ingredientRecipes;
     }
 
-    public void setEmployerDeliveryAgent(Set<IngredientRecipe> employerDeliveryAgent)
+    public void setIngredientRecipes(Set<IngredientRecipe> ingredientRecipes)
     {
-        this.employerDeliveryAgent = employerDeliveryAgent;
+        this.ingredientRecipes = ingredientRecipes;
     }
 
 }

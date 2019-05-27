@@ -20,12 +20,12 @@ public class IngredientRecipe implements Serializable
     private IngredientListPrimaryKey ingredientListPrimaryKey;
 
     @ManyToOne
-    @MapsId("recipeId") // This is the name of attr in EmployerDeliveryAgentPK class
+    @MapsId("recipeId")
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
     @ManyToOne
-    @MapsId("ingredientId") // This is the name of attr in EmployerDeliveryAgentPK class
+    @MapsId("ingredientId")
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 

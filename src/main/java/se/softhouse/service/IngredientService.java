@@ -28,4 +28,13 @@ public class IngredientService
                 .findFirst().get();
         return ingredient;
     }
+
+    public Ingredient add(Ingredient ingredient)
+    {
+
+        Ingredient savedIngrediet = ingredientRepository
+                .save(new Ingredient(ingredient.getId(), ingredient.getName(), ingredient.getIngredientRecipes()));
+
+        return savedIngrediet;
+    }
 }

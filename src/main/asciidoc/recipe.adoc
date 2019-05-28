@@ -1,4 +1,4 @@
-= Sample API Documentation
+= Recipe API Documentation
 
 == Introduction
 This is a sample API doc for Recipe Controller
@@ -17,3 +17,10 @@ include::{snippets}/recipe/get-by-id/http-response.adoc[]
 
 ==== CURL sample
 include::{snippets}/recipe/get-by-id/curl-request.adoc[]
+
+==== Path Parameters
+include::{snippets}/recipe/get-by-id/path-parameters.adoc[]
+
+= Recipe API Documentation
+Pezhman Kasraee<pezhman.kasraee@softhouse.se>
+1.0.0, 28/5/2019

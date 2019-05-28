@@ -2,6 +2,8 @@ package se.softhouse.controller;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -41,8 +43,12 @@ public class RecipeControllerJunit4Test
     @Test
     public void getPersonByIdShouldReturnOk() throws Exception
     {
-        this.mockMvc.perform(RestDocumentationRequestBuilders.get("/recipe/{id}", 1)).andExpect(status().isOk())
-                .andExpect(content().contentType("application/json;charset=UTF-8"))
-                .andDo(document("recipe/get-by-id"));
+        this.mockMvc.perform(RestDocumentationRequestBuilders.get("/recipe/{id}", 1))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andDo(document("recipe/get-by-id",
+                pathParameters(parameterWithName("id")
+                                .description("Identifier of the recipe to be obtained."))
+                ));
     }
 }

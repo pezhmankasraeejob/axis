@@ -1,0 +1,19 @@
+= Sample API Documentation
+
+== Introduction
+This is a sample API doc for Recipe Controller
+
+== Recipe API
+Collection of CRUD API endpoints used to manipulate recipes registered in the application.
+
+=== Get Recipe By Id
+Obtains a specific recipe registered in the application by its unique identifier.
+
+==== Sample Request
+include::{snippets}/recipe/get-by-id/http-request.adoc[]
+
+==== Sample Response
+include::{snippets}/recipe/get-by-id/http-response.adoc[]
+
+==== CURL sample
+include::{snippets}/recipe/get-by-id/curl-request.adoc[]

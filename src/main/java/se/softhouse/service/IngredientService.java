@@ -2,6 +2,7 @@ package se.softhouse.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,18 @@ public class IngredientService
                 .save(new Ingredient(ingredient.getId(), ingredient.getName(), ingredient.getIngredientRecipes()));
 
         return savedIngrediet;
+    }
+
+    public Ingredient update(Integer ingredientId, Ingredient ingredient)
+    {
+        Optional<Ingredient> ingredientTemp = ingredientRepository.findById(ingredientId);
+
+        Ingredient updatedIngredient = null;
+        if (ingredientTemp.isPresent())
+        {
+            updatedIngredient = ingredientRepository
+                    .save(new Ingredient(ingredient.getId(), ingredient.getName(), ingredient.getIngredientRecipes()));
+        }
+        return updatedIngredient;
     }
 }

@@ -1,6 +1,7 @@
 package se.softhouse.domain;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -51,6 +52,31 @@ public class IngredientListPrimaryKey implements Serializable
     public String toString()
     {
         return "IngredientListPrimaryKey [recipeId=" + recipeId + ", ingredientId=" + ingredientId + "]";
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(ingredientId, recipeId);
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        IngredientListPrimaryKey other = (IngredientListPrimaryKey) obj;
+        return Objects.equals(ingredientId, other.ingredientId) && Objects.equals(recipeId, other.recipeId);
     }
 
 }

@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,7 +22,7 @@ public class Ingredient implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -35,11 +36,12 @@ public class Ingredient implements Serializable
     {
     }
 
-    public Ingredient(Integer id, String name)
+    public Ingredient(Integer id, String name, Set<IngredientRecipe> ingredientRecipes)
     {
         super();
         this.id = id;
         this.name = name;
+        this.ingredientRecipes.addAll(ingredientRecipes);
     }
 
     public Integer getId()
@@ -70,6 +72,12 @@ public class Ingredient implements Serializable
     public void setIngredientRecipes(Set<IngredientRecipe> ingredientRecipes)
     {
         this.ingredientRecipes.addAll(ingredientRecipes);
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Ingredient [id=" + id + ", name=" + name + ", ingredientRecipes=" + ingredientRecipes + "]";
     }
 
 }

@@ -1,6 +1,7 @@
 package se.softhouse.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,21 @@ public class RecipeController
     @Autowired
     private RecipeService recipeService;
 
-    @RequestMapping(value = "/recipe", method = RequestMethod.GET)
+    @RequestMapping(value = "/recipe", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @Transactional
-    public List<Recipe> getAllRecipe()
+    public List<Recipe> getSearchRecipe(@RequestParam(value = "q", required = false) String qValue)
     {
-        return recipeService.getAll();
+        List<Recipe> recipeList = new ArrayList<Recipe>();
+
+        if (qValue == null || qValue == "")
+            recipeList = recipeService.getAll();
+        else
+        {
+            recipeList.add(recipeService.getAll().stream().filter(t -> t.getName().equalsIgnoreCase(qValue)).findFirst().get());
+        }
+
+        return recipeList;
     }
 
     @RequestMapping(value = "/recipe/{recipe_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -1,6 +1,7 @@
 package se.softhouse.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,22 @@ public class IngredientController
     @Autowired
     private IngredientService ingredientService;
 
-    @RequestMapping(value = "/ingredient", method = RequestMethod.GET)
+    @RequestMapping(value = "/ingredient", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @Transactional
-    public List<Ingredient> getAllRecipe()
+    public List<Ingredient> getSearchIngredient(@RequestParam(value = "q", required = false) String qValue)
     {
-        return ingredientService.getAll();
+        List<Ingredient> ingredientList = new ArrayList<Ingredient>();
+
+        if (qValue == null || qValue == "")
+            ingredientList = ingredientService.getAll();
+        else
+        {
+            ingredientList.add(ingredientService.getAll().stream().filter(t -> t.getName().equalsIgnoreCase(qValue))
+                    .findFirst().get());
+        }
+
+        return ingredientList;
     }
 
     @RequestMapping(value = "/ingredient/{ingredient_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -57,7 +68,7 @@ public class IngredientController
     @RequestMapping(value = "/ingredient/{ingredient_id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @Transactional
-    public ResponseEntity<Object> updateRecipe(@PathVariable("ingredient_id") Integer ingredientId,
+    public ResponseEntity<Object> updateIngredient(@PathVariable("ingredient_id") Integer ingredientId,
             @RequestBody Ingredient ingredient)
     {
         Ingredient updatedIngredient = ingredientService.update(ingredientId, ingredient);

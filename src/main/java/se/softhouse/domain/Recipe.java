@@ -26,7 +26,7 @@ public class Recipe implements Serializable
     @Column(name = "id")
     private Integer id;
 
-    @Column(nullable = false, name = "name")
+    @Column(nullable = false, name = "name", length = 50)
     private String name;
 
     @Column(nullable = false, name = "people")

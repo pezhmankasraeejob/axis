@@ -26,7 +26,7 @@ public class Ingredient implements Serializable
     @Column(name = "id")
     private Integer id;
 
-    @Column(nullable = false, name = "name")
+    @Column(nullable = false, name = "name", length = 25)
     private String name;
 
     @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
